@@ -6,10 +6,10 @@
 
 ## ✨ Preview
 
-![Loading](screenshots/loading.png)
-![Error](screenshots/error.png)  
-![Network](screenshots/network.png)
-![Content](screenshots/content.png)
+![Loading](https://raw.githubusercontent.com/May-Hemade/state_view/master/screenshots/loading.png)
+![Error](https://raw.githubusercontent.com/May-Hemade/state_view/master/screenshots/error.png)  
+![Network](https://raw.githubusercontent.com/May-Hemade/state_view/master/screenshots/network.png)
+![Content](https://raw.githubusercontent.com/May-Hemade/state_view/master/screenshots/content.png)
 
 ---
 
