@@ -61,6 +61,30 @@ StateView(
 )
 ```
 
+🔁 Auto Retry with Connectivity
+You can optionally integrate the `connectivity_plus` package (a popular community-maintained library) to automatically retry when the device reconnects to the internet.
+
+Although `connectivity_plus` is not included in this package by default, you can see how it's used in the example/ folder.
+
+```dart
+final _subscription = Connectivity().onConnectivityChanged.listen((results) {
+  final hasConnection = results.any((r) => r != ConnectivityResult.none);
+  if (currentState == ViewState.networkError && hasConnection) {
+    _loadData(); // Auto-retry logic
+  }
+});
+
+```
+
+Just add it to your pubspec.yaml:
+
+```yaml
+dependencies:
+  connectivity_plus: ^6.1.3
+```
+
+📲 This makes your app more resilient and user-friendly in offline scenarios.
+
 📦 Installation
 Add this to your pubspec.yaml:
 
