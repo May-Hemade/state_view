@@ -1,4 +1,4 @@
-name: state_view
+name: view_state_widget
 description: A lightweight Flutter widget to manage loading, content, and error states in UI.
 version: 1.0.0
 

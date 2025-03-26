@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:state_view/src/state_view.dart';
+import 'package:view_state_widget/view_state_widget.dart';
 
 void main() {
-  testWidgets('StateView displays loading widget correctly', (
+  testWidgets('ViewStateWidget displays loading widget correctly', (
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(
       const MaterialApp(
         home: Scaffold(
-          body: StateView(
+          body: ViewStateWidget(
             state: ViewState.loading,
             content: Text("Content Loaded"),
           ),
@@ -18,16 +18,16 @@ void main() {
     );
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
-    expect(find.text("Loading... Please wait"), findsOneWidget);
+    expect(find.text("Loading... Please wait."), findsOneWidget);
   });
 
-  testWidgets('StateView displays content widget correctly', (
+  testWidgets('ViewStateWidget displays content widget correctly', (
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(
       const MaterialApp(
         home: Scaffold(
-          body: StateView(
+          body: ViewStateWidget(
             state: ViewState.content,
             content: Text('Content Loaded'),
           ),
@@ -38,18 +38,20 @@ void main() {
     expect(find.text('Content Loaded'), findsOneWidget);
   });
 
-  testWidgets('StateView displays default error UI with retry button', (
+  testWidgets('ViewStateWidget displays default error UI with retry button', (
     WidgetTester tester,
   ) async {
-    void retry() {}
+    bool retried = false;
 
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: StateView(
+          body: ViewStateWidget(
             state: ViewState.error,
             content: const Text('Content Loaded'),
-            onRetry: retry,
+            onRetry: () {
+              retried = true;
+            },
           ),
         ),
       ),
@@ -61,9 +63,14 @@ void main() {
     );
     expect(find.text("Retry"), findsOneWidget);
     expect(find.byType(ElevatedButton), findsOneWidget);
+
+    await tester.tap(find.text("Retry"));
+    await tester.pump();
+
+    expect(retried, isTrue);
   });
 
-  testWidgets('StateView displays custom error widget if provided', (
+  testWidgets('ViewStateWidget displays custom error widget if provided', (
     WidgetTester tester,
   ) async {
     void retry() {}
@@ -71,7 +78,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: StateView(
+          body: ViewStateWidget(
             state: ViewState.error,
             content: const Text('Content Loaded'),
             errorWidget: Column(
@@ -90,13 +97,13 @@ void main() {
     expect(find.text("Retry"), findsOneWidget);
   });
 
-  testWidgets('StateView displays default network error message', (
+  testWidgets('ViewStateWidget displays default network error message', (
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(
       const MaterialApp(
         home: Scaffold(
-          body: StateView(
+          body: ViewStateWidget(
             state: ViewState.networkError,
             content: Text('Content Loaded'),
           ),
@@ -110,21 +117,22 @@ void main() {
     );
   });
 
-  testWidgets('StateView displays custom network error widget if provided', (
-    WidgetTester tester,
-  ) async {
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: Scaffold(
-          body: StateView(
-            state: ViewState.networkError,
-            content: Text('Content Loaded'),
-            networkErrorWidget: Center(child: Text("Custom network error")),
+  testWidgets(
+    'ViewStateWidget displays custom network error widget if provided',
+    (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: ViewStateWidget(
+              state: ViewState.networkError,
+              content: Text('Content Loaded'),
+              networkErrorWidget: Center(child: Text("Custom network error")),
+            ),
           ),
         ),
-      ),
-    );
+      );
 
-    expect(find.text("Custom network error"), findsOneWidget);
-  });
+      expect(find.text("Custom network error"), findsOneWidget);
+    },
+  );
 }

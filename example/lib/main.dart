@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:state_view/state_view.dart';
+import 'package:view_state_widget/view_state_widget.dart';
 import 'dart:math';
 
 void main() {
@@ -101,7 +101,7 @@ class _MyAppState extends State<MyApp> {
 
       home: Scaffold(
         appBar: AppBar(title: const Text("State View Example")),
-        body: StateView(
+        body: ViewStateWidget(
           state: _currentState,
           content: const _SuccessContent(),
           loadingWidget: _LoadingContent(),

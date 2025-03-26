@@ -1,4 +1,4 @@
-# 🧩 State View
+# 🧩 View State Widget
 
 **A simple yet powerful Flutter widget for handling loading, content, error, and network error UI states — with just one line of code.**
 
@@ -66,7 +66,7 @@ Add this to your pubspec.yaml:
 
 ```yaml
 dependencies:
-state_view: ^1.0.0
+  view_state_widget: ^1.0.0
 ```
 
 Then run:

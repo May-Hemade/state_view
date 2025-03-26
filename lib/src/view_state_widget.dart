@@ -9,7 +9,7 @@ enum ViewState { loading, content, error, networkError }
 /// [loadingWidget], [errorWidget], and [networkErrorWidget] are optional overrides.
 /// If not provided, default widgets are shown with built-in theming.
 /// [onRetry] provides a callback for Retry buttons in error states.
-class StateView extends StatelessWidget {
+class ViewStateWidget extends StatelessWidget {
   final ViewState state;
   final Widget content;
   final Widget? loadingWidget;
@@ -17,7 +17,7 @@ class StateView extends StatelessWidget {
   final Widget? networkErrorWidget;
   final VoidCallback? onRetry;
 
-  const StateView({
+  const ViewStateWidget({
     super.key,
     required this.state,
     required this.content,

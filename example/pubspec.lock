@@ -229,13 +229,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.12.1"
-  state_view:
-    dependency: "direct main"
-    description:
-      path: ".."
-      relative: true
-    source: path
-    version: "1.0.0+1"
   stream_channel:
     dependency: transitive
     description:
@@ -276,6 +269,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  view_state_widget:
+    dependency: "direct main"
+    description:
+      path: ".."
+      relative: true
+    source: path
+    version: "1.0.0"
   vm_service:
     dependency: transitive
     description:
